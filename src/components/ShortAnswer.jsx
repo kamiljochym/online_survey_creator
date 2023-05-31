@@ -1,14 +1,7 @@
-import Image from 'next/image'
-import {Inter} from 'next/font/google'
-import ShortAnswer from '@/components/ShortAnswer'
+import React from 'react'
 
-const inter = Inter({subsets: ['latin']})
-
-export default function Home() {
+const ShortAnswer = () => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
       <div className='relative container bg-white p-6 rounded-md'>
         <div className='mb-4'>Question?</div>
         <div className=''>
@@ -21,7 +14,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ShortAnswer />
-    </main>
   )
 }
+
+export default ShortAnswer
