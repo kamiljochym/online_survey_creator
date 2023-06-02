@@ -11,7 +11,7 @@ const inter = Inter({subsets: ['latin']})
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col m-auto items-center p-10 max-w-screen-sm ${inter.className}`}
+      className={`flex min-h-screen flex-col m-auto items-center p-10 ${inter.className}`}
     >
       <Title />
       <ShortAnswer />

@@ -2,7 +2,7 @@ import React from 'react'
 
 const MultipleChoice = () => {
   return (
-    <div className='relative container mb-6 bg-white p-6 rounded-md'>
+    <div className='relative container max-w-screen-sm border mb-6 bg-white p-6 rounded-md'>
       <div className='mb-6'>Multiple choice questions???</div>
       <div className='flex flex-col '>
         <div className='flex gap-4 mb-2 '>
