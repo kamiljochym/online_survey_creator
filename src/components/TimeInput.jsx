@@ -1,19 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const TimeInput = () => {
+const TimeInput = ({title, description}) => {
+  const [hour, setHour] = useState(null)
+  const [minutes, setMinutes] = useState(null)
+
   return (
-    <div className='relative container max-w-screen-sm border mb-6 bg-white p-6 rounded-md'>
-      <div className='mb-6'>Time</div>
-      <div className='flex origin-left transition-all duration-800  '>
+    <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6'>
+      <div className='mb-2'>{title}</div>
+      <div className='mb-6 text-sm'>{description}</div>
+      <div className='duration-800 flex origin-left transition-all  '>
         <input
-          className='bg-red w-[17px]   border-b-2 outline-none focus-within:border-gray-800 focus-within:border-b-2'
+          className='bg-red w-[17px]   border-b-2 outline-none focus-within:border-b-2 focus-within:border-gray-800'
+          onChange={(e) => setHour(e.target.value)}
           type='text'
+          maxLength={2}
           placeholder='12'
         />
-        <div className='flex justify-center p-1 items-center'>:</div>
+        <div className='flex items-center justify-center p-1'>:</div>
         <input
-          className='bg-red w-[17px]  border-b-2 outline-none focus-within:border-gray-800 focus-within:border-b-2'
+          className='bg-red w-[17px]  border-b-2 outline-none focus-within:border-b-2 focus-within:border-gray-800'
+          onChange={(e) => setMinutes(e.target.value)}
           type='text'
+          maxLength={2}
           placeholder='45'
         />
       </div>

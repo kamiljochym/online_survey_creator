@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 
-const Dropdown = () => {
+const Dropdown = ({title, description, options}) => {
   const ref = useRef()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState('Choose')
@@ -25,36 +25,40 @@ const Dropdown = () => {
   }, [dropdownOpen])
 
   return (
-    <div className='relative container max-w-screen-sm mb-6 border bg-white p-6 rounded-md '>
-      <div className='mb-6'>Dropdown</div>
+    <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6 '>
+      <div className='mb-2'>{title}</div>
+      <div className='mb-6 text-sm'>{description}</div>
 
-      <div className='border rounded-md' ref={ref} onClick={handleDropdownState}>
-        <div className='flex justify-between rounded-4 p-8 pt-4 pb-4 hover:cursor-pointer'>
+      <div
+        className='relative w-auto rounded-md border'
+        ref={ref}
+        onClick={handleDropdownState}
+      >
+        <div className='rounded-4 flex justify-between p-8 pb-4 pt-4 hover:cursor-pointer'>
           <div>{selectedItem}</div>
           <div>^</div>
         </div>
         <ul
           className={`${
             dropdownOpen ? 'z-10 opacity-100' : '-z-10 opacity-0'
-          } absolute top-8 left-12 border rounded-md bg-white w-max max-w-screen-sm transition-all duration-200`}
+          } absolute top-[-1px] h-auto w-full max-w-screen-sm rounded-md border bg-white transition-all duration-200`}
         >
-          <li className='p-8 pt-3 pb-3 mt-2 hover:cursor-pointer hover:bg-gray-200'>
+          <li
+            className='mt-1 w-auto p-8 pb-3 pt-3 hover:cursor-pointer hover:bg-gray-200'
+            onClick={() => setSelectedItem('Choose')}
+          >
             Choose
           </li>
-          <div className='m-auto w-full h-px mt-2 mb-2 bg-gray-200'></div>
-          <li className='p-8 pt-3 pb-3 hover:cursor-pointer hover:bg-gray-200'>
-            option 1 Option 1 but this option is quite long to test for long options
-            option 1 Option 1 but this option is quite long to test for long options
-          </li>
-          <li className='p-8 pt-3 pb-3 hover:cursor-pointer hover:bg-gray-200'>
-            option 2
-          </li>
-          <li className='p-8 pt-3 pb-3 hover:cursor-pointer hover:bg-gray-200'>
-            option 3
-          </li>
-          <li className='p-8 pt-3 pb-3 hover:cursor-pointer hover:bg-gray-200'>
-            option 4
-          </li>
+          <div className='m-auto mb-1 mt-1 h-px w-full bg-gray-200'></div>
+          {options.map((option, idx) => (
+            <li
+              className='w-auto p-8 pb-3 pt-3 hover:cursor-pointer hover:bg-gray-200'
+              id={idx}
+              onClick={() => setSelectedItem(option)}
+            >
+              {option}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

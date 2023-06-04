@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Paragraph = () => {
+const Paragraph = ({title, description}) => {
   return (
     <div className='relative container max-w-screen-sm border mb-6 bg-white p-6 rounded-md'>
-      <div className='mb-6'>Paragraph(long answer)?</div>
+      <div className='mb-2'>{title}</div>
+      <div className='mb-6 text-sm'>{description}</div>
       <div className=''>
         <div className='w-full border-b-2   transition-all duration-800 focus-within:border-gray-800 focus-within:border-b-2 '>
           <input

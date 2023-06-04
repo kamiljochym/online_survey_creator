@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const EmailInput = () => {
+const EmailInput = ({title, description}) => {
+  const [email, setEmail] = useState('')
   return (
-    <div className='relative container max-w-screen-sm border mb-6 bg-white p-6 rounded-md'>
-      <div className='mb-6'>Email?</div>
+    <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6'>
+      <div className='mb-2'>{title + email}</div>
+      <div className='mb-6 text-sm'>{description}</div>
       <div className=''>
-        <div className='w-2/4 border-b-2   origin-left transition-all duration-800 focus-within:border-gray-800 focus-within:border-b-2 '>
+        <div className='duration-800 w-2/4   origin-left border-b-2 transition-all focus-within:border-b-2 focus-within:border-gray-800 '>
           <input
-            className='bg-red w-full outline-none i'
+            className='bg-red i w-full outline-none'
             type='email'
+            onChange={(e) => setEmail(e.target.value)}
             placeholder='Enter email'
           />
         </div>

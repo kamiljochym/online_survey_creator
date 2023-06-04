@@ -1,60 +1,32 @@
 import React from 'react'
+import MultipleChoiceRow from './MultipleChoiceRow'
 
-const MultipleChoiceGrid = () => {
+const MultipleChoiceGrid = ({title, description, options}) => {
+  const optionsTest = [1, 2, 3, 4]
   return (
-    <div className='relative container overflow-hidden  max-w-screen-sm border mb-6 bg-white p-6 rounded-md'>
-      <div className='mb-6'>Multiple choice GRID???</div>
+    <div className='container relative mb-6  max-w-screen-sm overflow-hidden rounded-md border bg-white p-6'>
+      <div className='mb-2'>{title}</div>
+      <div className='mb-6 text-sm'>{description}</div>
       {/*Columns  */}
-      <div className=' overflow-y-hidden overflow-x-auto'>
-        <div className='table'>
+      <div className=' overflow-x-auto overflow-y-hidden'>
+        <div className='table w-full table-auto'>
           {/* Options row */}
-          <div className='table-row mb-2 items-center'>
-            <div className='table-cell p-2'></div>
-            <div className='table-cell p-2 min-w-[48px]'>Col 1</div>
-            <div className='table-cell p-2 min-w-[48px]'>Col 1</div>
-            <div className='table-cell p-2 min-w-[48px]'>Col 1</div>
-            <div className='table-cell p-2 min-w-[48px]'>Col 1</div>
+          <div className='mb-2 table-row items-center'>
+            <div className='table-cell max-w-0 p-2'></div>
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 1</div>
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 1</div>
+
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 8</div>
+
+            <div className='table-cell w-[120px]  min-w-[52px] p-2 text-center'>
+              Col 8
+            </div>
           </div>
           {/* Row 1 */}
-          <div className='table-row items-center'>
-            <div className='table-cell p-2'>Row 1</div>
-            <div className='table-cell text-center p-2'>
-              <input
-                className='hover:cursor-pointer'
-                type='radio'
-                id='gridRow1Option1'
-                value='gridRow1Option1'
-                name='grid1'
-              />
-            </div>
-            <div className='table-cell text-center p-2'>
-              <input
-                className='hover:cursor-pointer'
-                type='radio'
-                id='gridRow1Option2'
-                value='gridRow1Option2'
-                name='grid1'
-              />
-            </div>
-            <div className='table-cell text-center p-2'>
-              <input
-                className='hover:cursor-pointer'
-                type='radio'
-                id='gridRow1Option1'
-                value='gridRow1Option1'
-                name='grid1'
-              />
-            </div>
-            <div className='table-cell text-center p-2'>
-              <input
-                className='hover:cursor-pointer'
-                type='radio'
-                id='gridRow1Option1'
-                value='gridRow1Option1'
-                name='grid1'
-              />
-            </div>
-          </div>
+          <MultipleChoiceRow />
+          <MultipleChoiceRow />
+          <MultipleChoiceRow />
+          <MultipleChoiceRow />
         </div>
       </div>
     </div>
