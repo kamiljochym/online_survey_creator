@@ -26,15 +26,6 @@ export default function Home() {
 
   const [form, setForm] = useState([])
 
-  const ShortAnswerForm = {
-    title: 'Your title here',
-    description: 'Optional Description here',
-  }
-
-  const ParagraphAnswerForm = {
-    title: 'Your title here',
-    description: 'Optional Description here',
-  }
   const formExample = {
     title: 'Online Survey',
     description: 'Description of online survey',
@@ -46,38 +37,109 @@ export default function Home() {
           description: ' short answer desc',
         },
         {
-          type: 'short_answer',
-          title: 'Short answer question 2',
-          description: ' short answer desc',
-        },
-        {
-          type: 'short_answer',
-          title: 'Short answer question 3',
-          description: ' short answer desc',
-        },
-        {
           type: 'paragraph',
           title: 'paragraph answer question four',
           description: ' short answer desc',
+        },
+        {
+          type: 'multiple_choice',
+          title: 'multiple answer question four',
+          description: ' multiple answer desc',
+          options: options,
+        },
+        {
+          type: 'dropdown',
+          title: 'dropdown answer question four',
+          description: ' dropdown answer desc',
+          options: options,
+        },
+        {
+          type: 'checkboxes',
+          title: 'checkbox answer question four',
+          description: ' checkboxes answer desc',
+          options: options,
+        },
+        {
+          type: 'linear_scale',
+          title: 'linear answer question four',
+          description: ' linear answer desc',
+          optionsLinearScale: {
+            startLabel: 'start',
+            endLabel: 'end label',
+            from: 1,
+            to: 4,
+          },
+        },
+        {
+          type: 'date_input',
+          title: 'date answer question four',
+          description: ' date answer desc',
+        },
+        {
+          type: 'time_input',
+          title: 'time answer question four',
+          description: 'time answer desc',
+        },
+        {
+          type: 'multiple_choice_grid',
+          title: 'multiple grid answer question four',
+          description: ' multiple grid answer desc',
+          options: options,
+        },
+        {
+          type: 'email_input',
+          title: 'email answer question four',
+          description: ' email answer desc',
+        },
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
         },
       ],
       [],
       [],
     ],
   }
+  const emptyResponse = {sections: []}
+
+  for (let i = 0; i < formExample.sections.length; i++) {
+    let section = []
+    for (let j = 0; j < formExample.sections[i].length; j++) {
+      section.push(null)
+    }
+    emptyResponse.sections.push(section)
+  }
+
+  console.log(emptyResponse)
+
+  //TODO AFTER F1
+  //FIGURE IF PASSING THE STATE IS WORTH OR ITF ITS BETTER TO USE GLOBA CONTEXT OR SOMETHING ELSE
+
+  const [response, setResponse] = useState(emptyResponse)
+
   return (
     <main
       className={`m-auto flex min-h-screen flex-col items-center p-10 ${inter.className}`}
     >
-      <Title title={formExample.title} description={formExample.description} />
+      <Title
+        title={formExample.title}
+        description={
+          formExample.description + ' test response ' + response.sections[0][7]
+        }
+      />
 
-      {formExample.sections.map((section, idx) =>
+      {formExample.sections.map((section, sectionId) =>
         section.map(
-          (question, idx) =>
+          (question, questionId) =>
             //SHORT ANSWER
             (question.type === 'short_answer' && (
               <ShortAnswer
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -85,7 +147,11 @@ export default function Home() {
             // PARAGRAPH
             (question.type === 'paragraph' && (
               <Paragraph
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -93,7 +159,11 @@ export default function Home() {
             // MULTIPLE CHOICE
             (question.type === 'multiple_choice' && (
               <MultipleChoice
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
                 options={question.options}
@@ -102,7 +172,11 @@ export default function Home() {
             // DROPDOWN
             (question.type === 'dropdown' && (
               <Dropdown
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
                 options={question.options}
@@ -111,7 +185,11 @@ export default function Home() {
             // CHECKBOXES
             (question.type === 'checkboxes' && (
               <Checkboxes
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
                 options={options}
@@ -120,7 +198,11 @@ export default function Home() {
             // LINEAR SCALE
             (question.type === 'linear_scale' && (
               <LinearScale
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
                 optionsLinearScale={question.optionsLinearScale}
@@ -129,7 +211,11 @@ export default function Home() {
             // DATE INPUT
             (question.type === 'date_input' && (
               <DateInput
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -137,7 +223,11 @@ export default function Home() {
             // TIME INPUT
             (question.type === 'time_input' && (
               <TimeInput
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -145,7 +235,11 @@ export default function Home() {
             // MULTIPLE CHOICE GRID
             (question.type === 'multiple_choice_grid' && (
               <MultipleChoiceGrid
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -153,7 +247,11 @@ export default function Home() {
             // EMAIL INPUT
             (question.type === 'email_input' && (
               <EmailInput
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
@@ -161,14 +259,18 @@ export default function Home() {
             // NUMERIC INPUT
             (question.type === 'numeric_input' && (
               <NumericInput
-                key={idx}
+                key={questionId}
+                questionId={questionId}
+                sectionId={sectionId}
+                response={response}
+                setResponse={setResponse}
                 title={question.title}
                 description={question.description}
               />
             ))
         )
       )}
-
+      {/* 
       <ShortAnswer
         title={'Short answer'}
         description={
@@ -219,7 +321,7 @@ export default function Home() {
 
       <MultipleChoiceGrid />
       <EmailInput title={'email question'} />
-      <NumericInput title={'numeric'} />
+      <NumericInput title={'numeric'} /> */}
     </main>
   )
 }

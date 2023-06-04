@@ -1,12 +1,37 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-const TimeInput = ({title, description}) => {
-  const [hour, setHour] = useState(null)
-  const [minutes, setMinutes] = useState(null)
+const TimeInput = ({
+  title,
+  description,
+  sectionId,
+  questionId,
+  response,
+  setResponse,
+}) => {
+  const [time, setTime] = useState({hour: null, minutes: null})
 
+  const setHour = (val) => {
+    const newTime = {
+      hour: val,
+      minutes: time.minutes,
+    }
+    const newResponse = response
+    response.sections[sectionId][questionId] = newTime
+    setResponse(newResponse)
+  }
+
+  const setMinutes = (val) => {
+    const newTime = {
+      hour: time.hour,
+      minutes: val,
+    }
+    const newResponse = response
+    response.sections[sectionId][questionId] = newTime
+    setResponse(newResponse)
+  }
   return (
     <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6'>
-      <div className='mb-2'>{title}</div>
+      <div className='mb-2'>{title + response.sections[sectionId][questionId]}</div>
       <div className='mb-6 text-sm'>{description}</div>
       <div className='duration-800 flex origin-left transition-all  '>
         <input

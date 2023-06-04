@@ -1,7 +1,15 @@
 import React from 'react'
 import MultipleChoiceRow from './MultipleChoiceRow'
 
-const MultipleChoiceGrid = ({title, description, options}) => {
+const MultipleChoiceGrid = ({
+  title,
+  description,
+  options,
+  sectionId,
+  questionId,
+  response,
+  setResponse,
+}) => {
   const optionsTest = [1, 2, 3, 4]
   return (
     <div className='container relative mb-6  max-w-screen-sm overflow-hidden rounded-md border bg-white p-6'>

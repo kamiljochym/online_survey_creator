@@ -1,12 +1,27 @@
 import React, {useState, useRef, useEffect} from 'react'
 
-const Dropdown = ({title, description, options}) => {
+const Dropdown = ({
+  title,
+  description,
+  options,
+  sectionId,
+  questionId,
+  response,
+  setResponse,
+}) => {
   const ref = useRef()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState('Choose')
 
   const handleDropdownState = () => {
     setDropdownOpen(!dropdownOpen)
+  }
+
+  const handleChange = (option) => {
+    const newResponse = response
+    response.sections[sectionId][questionId] = option
+    setSelectedItem(option)
+    setResponse(newResponse)
   }
 
   useEffect(() => {
@@ -45,7 +60,7 @@ const Dropdown = ({title, description, options}) => {
         >
           <li
             className='mt-1 w-auto p-8 pb-3 pt-3 hover:cursor-pointer hover:bg-gray-200'
-            onClick={() => setSelectedItem('Choose')}
+            onClick={() => handleChange('Choose')}
           >
             Choose
           </li>
@@ -54,7 +69,7 @@ const Dropdown = ({title, description, options}) => {
             <li
               className='w-auto p-8 pb-3 pt-3 hover:cursor-pointer hover:bg-gray-200'
               id={idx}
-              onClick={() => setSelectedItem(option)}
+              onClick={() => handleChange(option)}
             >
               {option}
             </li>

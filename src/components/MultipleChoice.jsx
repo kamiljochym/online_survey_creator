@@ -1,10 +1,24 @@
 import React, {useState} from 'react'
 
-const MultipleChoice = ({title, description, options}) => {
+const MultipleChoice = ({
+  title,
+  description,
+  options,
+  sectionId,
+  questionId,
+  response,
+  setResponse,
+}) => {
   // TODO ADD A USESTATE TO KEEP TRACK OF THE ChOSEN VALUE SO THAT IT CAN BE SUBMITTED
 
   const [chosenOption, setChosenOption] = useState('')
   const randomID = Math.floor(Math.random() * 100000).toString()
+
+  const handleChange = (option) => {
+    const newResponse = response
+    response.sections[sectionId][questionId] = option
+    setResponse(newResponse)
+  }
 
   return (
     <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6'>
@@ -19,7 +33,7 @@ const MultipleChoice = ({title, description, options}) => {
               id={option + idx + randomID}
               value={option + idx + randomID}
               name={randomID}
-              onChange={() => setChosenOption(option)}
+              onChange={() => handleChange(option)}
             />
             <label htmlFor={option + idx + randomID}>{option}</label>
           </div>
