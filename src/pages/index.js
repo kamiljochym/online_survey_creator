@@ -24,8 +24,81 @@ export default function Home() {
     'Option D',
   ]
 
-  const [form, setForm] = useState([])
+  const defaultForm = {
+    title: 'Form title',
+    description: '',
+    sections: [[{type: 'short_answer', title: 'Question', description: ''}]],
+  }
 
+  const [form, setForm] = useState(defaultForm)
+
+  // MAKE EVERY DIV AN INPUT SO YOU CAN DISABLE THEM IF NOT EDITING (genius)
+
+  const defaultShortAnswer = {
+    type: 'short_answer',
+    title: '',
+    description: '',
+  }
+  const defaultParagraph = {
+    type: 'paragraph',
+    title: '',
+    description: '',
+  }
+  const defaultMultipleChoice = {
+    type: 'multiple_choice',
+    title: '',
+    description: '',
+    options: options,
+  }
+  const defaultDropdown = {
+    type: 'dropdown',
+    title: '',
+    description: '',
+    options: options,
+  }
+  const defaultCheckboxes = {
+    type: 'checkboxes',
+    title: '',
+    description: '',
+    options: options,
+  }
+  const defaultLinearScale = {
+    type: 'linear_scale',
+    title: '',
+    description: '',
+    optionsLinearScale: {
+      startLabel: 'start',
+      endLabel: 'end label',
+      from: 1,
+      to: 4,
+    },
+  }
+  const defaultDateInput = {
+    type: 'date_input',
+    title: '',
+    description: '',
+  }
+  const defaultTimeInput = {
+    type: 'time_input',
+    title: '',
+    description: '',
+  }
+  const defaultMultipleChoiceGrid = {
+    type: 'multiple_choice_grid',
+    title: '',
+    description: '',
+    options: options,
+  }
+  const defaultEmailInput = {
+    type: 'email_input',
+    title: '',
+    description: '',
+  }
+  const defaultNumericInput = {
+    type: 'numeric_input',
+    title: '',
+    description: '',
+  }
   const formExample = {
     title: 'Online Survey',
     description: 'Description of online survey',
@@ -34,7 +107,7 @@ export default function Home() {
         {
           type: 'short_answer',
           title: 'Short answer question',
-          description: ' short answer desc',
+          description: 'short answer desc',
         },
         {
           type: 'paragraph',
@@ -111,12 +184,49 @@ export default function Home() {
     emptyResponse.sections.push(section)
   }
 
-  console.log(emptyResponse)
-
   //TODO AFTER F1
   //FIGURE IF PASSING THE STATE IS WORTH OR ITF ITS BETTER TO USE GLOBA CONTEXT OR SOMETHING ELSE
 
   const [response, setResponse] = useState(emptyResponse)
+
+  const updateForm = (
+    sectionId,
+    questionId,
+    title,
+    description,
+    type,
+    options,
+    optionsLinearScale
+  ) => {
+    const newForm = {...form}
+    newForm.sections[sectionId][questionId].title = title
+    newForm.sections[sectionId][questionId].description = description
+    if (options) {
+      newForm.sections[sectionId][questionId].options = options
+    }
+    if (optionsLinearScale) {
+      newForm.sections[sectionId][questionId].optionsLinearScale = optionsLinearScale
+    }
+    if (type) {
+      newForm.sections[sectionId][questionId].type = type
+    }
+
+    console.log(title, description)
+    console.log(newForm)
+    setForm(newForm)
+  }
+
+  const addQuestion = (questionId) => {
+    const newForm = {...form}
+    const arr = newForm.sections[0]
+    newForm.sections[0] = [
+      ...arr.slice(0, questionId + 1),
+      defaultShortAnswer,
+      ...arr.slice(questionId + 1),
+    ]
+    console.log(newForm)
+    setForm(newForm)
+  }
 
   return (
     <main
@@ -129,7 +239,7 @@ export default function Home() {
         }
       />
 
-      {formExample.sections.map((section, sectionId) =>
+      {form.sections.map((section, sectionId) =>
         section.map(
           (question, questionId) =>
             //SHORT ANSWER
@@ -140,8 +250,11 @@ export default function Home() {
                 sectionId={sectionId}
                 response={response}
                 setResponse={setResponse}
+                isEdit={false}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
               />
             )) ||
             // PARAGRAPH
