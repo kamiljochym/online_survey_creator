@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import EditMenu from './EditMenu'
 import TitleText from './TitleText'
+import {motion, AnimatePresence} from 'framer-motion'
+import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone'
 
 const MultipleChoice = ({
   title,
@@ -91,10 +93,10 @@ const MultipleChoice = ({
                   onChange={(e) => handleEdit(e, 'optionText', idx)}
                 />
                 <div
-                  className='absolute right-4 top-0 cursor-pointer rounded-md border bg-white px-2'
+                  className='absolute right-4 top-0 cursor-pointer rounded-md border bg-white '
                   onClick={(e) => handleEdit(e, 'optionDelete', idx)}
                 >
-                  X
+                  <CloseTwoToneIcon />
                 </div>
               </div>
             ) : (

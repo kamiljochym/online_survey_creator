@@ -13,6 +13,7 @@ import MultipleChoiceGrid from '@/components/MultipleChoiceGrid'
 import EmailInput from '@/components/EmailInput'
 import NumericInput from '@/components/NumericInput'
 import {useState} from 'react'
+import {TransitionGroup} from 'react-transition-group'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -27,7 +28,7 @@ export default function Home() {
   const defaultForm = {
     title: 'Form title',
     description: '',
-    sections: [[{type: 'short_answer', title: 'Question', description: ''}]],
+    sections: [[{type: 'short_answer', title: 'Question', description: ''}], [], []],
   }
 
   const [form, setForm] = useState(defaultForm)
@@ -171,8 +172,20 @@ export default function Home() {
           description: ' numeric answer desc',
         },
       ],
-      [],
-      [],
+      [
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
+        },
+      ],
+      [
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
+        },
+      ],
     ],
   }
   const emptyResponse = {sections: []}
@@ -239,7 +252,15 @@ export default function Home() {
     setForm(newForm)
   }
 
-  const addQuestion = (questionId) => {
+  const addQuestion = (questionId, del) => {
+    if (del) {
+      const newForm = {...form}
+      const arr = newForm.sections[0]
+      newForm.sections[0] = [...arr.slice(0, questionId), ...arr.slice(questionId + 1)]
+      setForm(newForm)
+      return
+    }
+
     const newForm = {...form}
     const arr = newForm.sections[0]
     newForm.sections[0] = [
@@ -442,6 +463,18 @@ export default function Home() {
             ))
         )
       )}
+      <div className='relative flex w-full max-w-screen-sm justify-end gap-2'>
+        <div className='absolute bottom-8 right-0 flex'>
+          {form.sections.map((idx) => (
+            <div className='text-4xl text-white first:text-black'> -</div>
+          ))}
+        </div>
+        <button className='rounded-md border bg-white px-8 py-2'>Back</button>
+        <button className='rounded-md border bg-white px-8 py-2'>Next</button>
+        <button className='rounded-md border bg-gray-800 px-8 py-2 text-white'>
+          Submit
+        </button>
+      </div>
       {/* 
       <ShortAnswer
         title={'Short answer'}
