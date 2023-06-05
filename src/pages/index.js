@@ -31,6 +31,7 @@ export default function Home() {
   }
 
   const [form, setForm] = useState(defaultForm)
+  const [isEdit, setIsEdit] = useState(false)
 
   // MAKE EVERY DIV AN INPUT SO YOU CAN DISABLE THEM IF NOT EDITING (genius)
 
@@ -107,12 +108,12 @@ export default function Home() {
         {
           type: 'short_answer',
           title: 'Short answer question',
-          description: 'short answer desc',
+          description: 'short answer description',
         },
         {
           type: 'paragraph',
-          title: 'paragraph answer question four',
-          description: ' short answer desc',
+          title: 'Paragraph question',
+          description: 'Paragraph answer desc',
         },
         {
           type: 'multiple_choice',
@@ -208,7 +209,29 @@ export default function Home() {
       newForm.sections[sectionId][questionId].optionsLinearScale = optionsLinearScale
     }
     if (type) {
-      newForm.sections[sectionId][questionId].type = type
+      if (type === 'short_answer') {
+        newForm.sections[sectionId][questionId] = defaultShortAnswer
+      } else if (type === 'paragraph') {
+        newForm.sections[sectionId][questionId] = defaultParagraph
+      } else if (type === 'multiple_choice') {
+        newForm.sections[sectionId][questionId] = defaultMultipleChoice
+      } else if (type === 'dropdown') {
+        newForm.sections[sectionId][questionId] = defaultDropdown
+      } else if (type === 'checkboxes') {
+        newForm.sections[sectionId][questionId] = defaultCheckboxes
+      } else if (type === 'linear_scale') {
+        newForm.sections[sectionId][questionId] = defaultLinearScale
+      } else if (type === 'date_input') {
+        newForm.sections[sectionId][questionId] = defaultDateInput
+      } else if (type === 'time_input') {
+        newForm.sections[sectionId][questionId] = defaultTimeInput
+      } else if (type === 'multiple_choice_grid') {
+        newForm.sections[sectionId][questionId] = defaultMultipleChoiceGrid
+      } else if (type === 'email_input') {
+        newForm.sections[sectionId][questionId] = defaultEmailInput
+      } else if (type === 'numeric_input') {
+        newForm.sections[sectionId][questionId] = defaultNumericInput
+      }
     }
 
     console.log(title, description)
@@ -230,8 +253,14 @@ export default function Home() {
 
   return (
     <main
-      className={`m-auto flex min-h-screen flex-col items-center p-10 ${inter.className}`}
+      className={`relative m-auto flex h-full min-h-screen flex-col items-center p-10 ${inter.className}`}
     >
+      <button
+        onClick={() => setIsEdit(!isEdit)}
+        className='absolute bottom-4 left-4 rounded-md border bg-white'
+      >
+        Toggle Edit
+      </button>
       <Title
         title={formExample.title}
         description={
@@ -250,7 +279,7 @@ export default function Home() {
                 sectionId={sectionId}
                 response={response}
                 setResponse={setResponse}
-                isEdit={false}
+                isEdit={isEdit}
                 title={question.title}
                 description={question.description}
                 addQuestion={addQuestion}
@@ -265,8 +294,11 @@ export default function Home() {
                 sectionId={sectionId}
                 response={response}
                 setResponse={setResponse}
+                isEdit={isEdit}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
               />
             )) ||
             // MULTIPLE CHOICE
@@ -280,6 +312,9 @@ export default function Home() {
                 title={question.title}
                 description={question.description}
                 options={question.options}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // DROPDOWN
@@ -293,6 +328,9 @@ export default function Home() {
                 title={question.title}
                 description={question.description}
                 options={question.options}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // CHECKBOXES
@@ -306,6 +344,9 @@ export default function Home() {
                 title={question.title}
                 description={question.description}
                 options={options}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // LINEAR SCALE
@@ -319,6 +360,9 @@ export default function Home() {
                 title={question.title}
                 description={question.description}
                 optionsLinearScale={question.optionsLinearScale}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // DATE INPUT
@@ -331,6 +375,9 @@ export default function Home() {
                 setResponse={setResponse}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // TIME INPUT
@@ -343,6 +390,9 @@ export default function Home() {
                 setResponse={setResponse}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // MULTIPLE CHOICE GRID
@@ -355,6 +405,9 @@ export default function Home() {
                 setResponse={setResponse}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // EMAIL INPUT
@@ -367,6 +420,9 @@ export default function Home() {
                 setResponse={setResponse}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             )) ||
             // NUMERIC INPUT
@@ -379,6 +435,9 @@ export default function Home() {
                 setResponse={setResponse}
                 title={question.title}
                 description={question.description}
+                addQuestion={addQuestion}
+                updateForm={updateForm}
+                isEdit={isEdit}
               />
             ))
         )

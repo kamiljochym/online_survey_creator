@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react'
+import TitleText from './TitleText'
+import EditMenu from './EditMenu'
 
 const TimeInput = ({
   title,
@@ -7,6 +9,9 @@ const TimeInput = ({
   questionId,
   response,
   setResponse,
+  isEdit,
+  addQuestion,
+  updateForm,
 }) => {
   const [time, setTime] = useState({hour: null, minutes: null})
 
@@ -29,10 +34,25 @@ const TimeInput = ({
     response.sections[sectionId][questionId] = newTime
     setResponse(newResponse)
   }
+  const handleEdit = (e, editWhat) => {
+    if (editWhat === 'title') {
+      updateForm(sectionId, questionId, e.target.value, description)
+    }
+    if (editWhat === 'description') {
+      updateForm(sectionId, questionId, title, e.target.value)
+    }
+    if (editWhat === 'type') {
+      updateForm(sectionId, questionId, title, description, e)
+    }
+  }
   return (
-    <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6'>
-      <div className='mb-2'>{title + response.sections[sectionId][questionId]}</div>
-      <div className='mb-6 text-sm'>{description}</div>
+    <div className='container relative mb-6 flex max-w-screen-sm flex-col rounded-md border bg-white p-6'>
+      <TitleText
+        isEdit={isEdit}
+        handleEdit={handleEdit}
+        description={description}
+        title={title}
+      />
       <div className='duration-800 flex origin-left transition-all  '>
         <input
           className='bg-red w-[17px]   border-b-2 outline-none focus-within:border-b-2 focus-within:border-gray-800'
@@ -50,6 +70,12 @@ const TimeInput = ({
           placeholder='45'
         />
       </div>
+      <EditMenu
+        isEdit={isEdit}
+        addQuestion={addQuestion}
+        questionId={questionId}
+        handleEdit={handleEdit}
+      />
     </div>
   )
 }

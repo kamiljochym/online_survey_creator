@@ -1,4 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
+import TitleText from './TitleText'
+import EditMenu from './EditMenu'
 
 const Dropdown = ({
   title,
@@ -8,6 +10,9 @@ const Dropdown = ({
   questionId,
   response,
   setResponse,
+  isEdit,
+  addQuestion,
+  updateForm,
 }) => {
   const ref = useRef()
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -39,10 +44,25 @@ const Dropdown = ({
     }
   }, [dropdownOpen])
 
+  const handleEdit = (e, editWhat) => {
+    if (editWhat === 'title') {
+      updateForm(sectionId, questionId, e.target.value, description)
+    }
+    if (editWhat === 'description') {
+      updateForm(sectionId, questionId, title, e.target.value)
+    }
+    if (editWhat === 'type') {
+      updateForm(sectionId, questionId, title, description, e)
+    }
+  }
   return (
-    <div className='container relative mb-6 max-w-screen-sm rounded-md border bg-white p-6 '>
-      <div className='mb-2'>{title}</div>
-      <div className='mb-6 text-sm'>{description}</div>
+    <div className='container relative mb-6 flex max-w-screen-sm flex-col rounded-md border bg-white p-6 '>
+      <TitleText
+        isEdit={isEdit}
+        handleEdit={handleEdit}
+        description={description}
+        title={title}
+      />
 
       <div
         className='relative w-auto rounded-md border'
@@ -76,6 +96,12 @@ const Dropdown = ({
           ))}
         </ul>
       </div>
+      <EditMenu
+        isEdit={isEdit}
+        addQuestion={addQuestion}
+        questionId={questionId}
+        handleEdit={handleEdit}
+      />
     </div>
   )
 }
