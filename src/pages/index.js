@@ -268,7 +268,7 @@ export default function Home() {
     >
       <button
         onClick={() => setIsEdit(!isEdit)}
-        className='absolute bottom-4 left-4 rounded-md border bg-white'
+        className='absolute bottom-4 left-4 rounded-md border bg-gray-800 p-2 px-4 text-white'
       >
         Toggle Edit
       </button>

@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import TitleText from './TitleText'
 import EditMenu from './EditMenu'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const Dropdown = ({
   title,
@@ -71,7 +72,7 @@ const Dropdown = ({
       >
         <div className='rounded-4 flex justify-between p-8 pb-4 pt-4 hover:cursor-pointer'>
           <div>{selectedItem}</div>
-          <div>^</div>
+          <KeyboardArrowDownIcon />
         </div>
         <ul
           className={`${
