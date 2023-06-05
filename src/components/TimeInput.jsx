@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import TitleText from './TitleText'
 import EditMenu from './EditMenu'
+import {Alert} from '@mui/material'
 
 const TimeInput = ({
   title,
@@ -45,6 +46,23 @@ const TimeInput = ({
       updateForm(sectionId, questionId, title, description, e)
     }
   }
+
+  const [alert, setAlert] = useState(false)
+
+  const validateHour = (e) => {
+    if (e.target.value < 25 || e.target.value === '') {
+      setAlert(false)
+    } else {
+      setAlert(true)
+    }
+  }
+  const validateMinutes = (e) => {
+    if (e.target.value < 60 || e.target.value === '') {
+      setAlert(false)
+    } else {
+      setAlert(true)
+    }
+  }
   return (
     <div className='container relative mb-6 flex max-w-screen-sm flex-col rounded-md border bg-white p-6'>
       <TitleText
@@ -60,6 +78,7 @@ const TimeInput = ({
           type='text'
           maxLength={2}
           placeholder='12'
+          onBlur={(e) => validateHour(e)}
         />
         <div className='flex items-center justify-center p-1'>:</div>
         <input
@@ -68,8 +87,14 @@ const TimeInput = ({
           type='text'
           maxLength={2}
           placeholder='45'
+          onBlur={(e) => validateMinutes(e)}
         />
       </div>
+      {alert && (
+        <Alert severity='error' className='mt-2 w-2/4'>
+          Invalid Time
+        </Alert>
+      )}
       <EditMenu
         isEdit={isEdit}
         addQuestion={addQuestion}

@@ -58,7 +58,6 @@ export default function Home() {
           description: 'Linear answer desc',
           optionsLinearScale: {
             startLabel: 'start',
-            endLabel: 'end label',
             from: 1,
             to: 4,
           },
@@ -90,20 +89,8 @@ export default function Home() {
           description: ' numeric answer desc',
         },
       ],
-      [
-        {
-          type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
-        },
-      ],
-      [
-        {
-          type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
-        },
-      ],
+      [],
+      [],
     ],
   }
 
@@ -198,6 +185,13 @@ export default function Home() {
 
   const [response, setResponse] = useState(emptyResponse)
 
+  const updateHeader = (title, description) => {
+    const newForm = {...form}
+    newForm.title = title
+    newForm.description = description
+    setForm(newForm)
+  }
+
   const updateForm = (
     sectionId,
     questionId,
@@ -278,10 +272,10 @@ export default function Home() {
         Toggle Edit
       </button>
       <Title
-        title={formExample.title}
-        description={
-          formExample.description + ' test response ' + response.sections[0][7]
-        }
+        title={form.title}
+        description={form.description}
+        isEdit={isEdit}
+        updateHeader={updateHeader}
       />
 
       {form.sections.map((section, sectionId) =>

@@ -6,7 +6,7 @@ import EditMenu from './EditMenu'
 const LinearScale = ({
   title,
   description,
-  options,
+  optionsLinearScale,
   sectionId,
   questionId,
   response,
@@ -15,12 +15,6 @@ const LinearScale = ({
   addQuestion,
   updateForm,
 }) => {
-  const optionsLinearScale = {
-    startLabel: 'start',
-    endLabel: 'end label',
-    from: 1,
-    to: 4,
-  }
   // creates an array to create specified number of radio buttons
   const scale = []
   for (let i = optionsLinearScale.from; i <= optionsLinearScale.to; i++) {
