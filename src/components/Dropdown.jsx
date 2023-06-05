@@ -89,6 +89,7 @@ const Dropdown = ({
             <li
               className='w-auto p-8 pb-3 pt-3 hover:cursor-pointer hover:bg-gray-200'
               id={idx}
+              key={idx}
               onClick={() => handleChange(option)}
             >
               {option}

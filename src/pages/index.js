@@ -18,12 +18,94 @@ import {TransitionGroup} from 'react-transition-group'
 const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
-  const options = [
-    'Option A',
-    'Option B',
-    'Option C --openssl-legacy-provider start',
-    'Option D',
-  ]
+  const options = ['Option A', 'Option B', 'Option C', 'Option D']
+  const formExample = {
+    title: 'Online Survey',
+    description: 'Description of online survey',
+    sections: [
+      [
+        {
+          type: 'short_answer',
+          title: 'Short answer question',
+          description: 'Short answer description',
+        },
+        {
+          type: 'paragraph',
+          title: 'Paragraph question',
+          description: '',
+        },
+        {
+          type: 'multiple_choice',
+          title: 'Choose an option',
+          description: 'Pick the best option',
+          options: options,
+        },
+        {
+          type: 'dropdown',
+          title: 'Dropdown answer question four',
+          description: 'Dropdown answer desc',
+          options: options,
+        },
+        {
+          type: 'checkboxes',
+          title: 'Checkbox answer question four',
+          description: 'Checkboxes answer desc',
+          options: options,
+        },
+        {
+          type: 'linear_scale',
+          title: 'Linear answer question four',
+          description: 'Linear answer desc',
+          optionsLinearScale: {
+            startLabel: 'start',
+            endLabel: 'end label',
+            from: 1,
+            to: 4,
+          },
+        },
+        {
+          type: 'date_input',
+          title: 'Date answer question four',
+          description: 'Date answer desc',
+        },
+        {
+          type: 'time_input',
+          title: 'Time answer question four',
+          description: 'Time answer desc',
+        },
+        {
+          type: 'multiple_choice_grid',
+          title: 'multiple grid answer question four',
+          description: ' multiple grid answer desc',
+          options: options,
+        },
+        {
+          type: 'email_input',
+          title: 'email answer question four',
+          description: ' email answer desc',
+        },
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
+        },
+      ],
+      [
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
+        },
+      ],
+      [
+        {
+          type: 'numeric_input',
+          title: 'numeric answer question four',
+          description: ' numeric answer desc',
+        },
+      ],
+    ],
+  }
 
   const defaultForm = {
     title: 'Form title',
@@ -31,7 +113,7 @@ export default function Home() {
     sections: [[{type: 'short_answer', title: 'Question', description: ''}], [], []],
   }
 
-  const [form, setForm] = useState(defaultForm)
+  const [form, setForm] = useState(formExample)
   const [isEdit, setIsEdit] = useState(false)
 
   // MAKE EVERY DIV AN INPUT SO YOU CAN DISABLE THEM IF NOT EDITING (genius)
@@ -100,93 +182,6 @@ export default function Home() {
     type: 'numeric_input',
     title: '',
     description: '',
-  }
-  const formExample = {
-    title: 'Online Survey',
-    description: 'Description of online survey',
-    sections: [
-      [
-        {
-          type: 'short_answer',
-          title: 'Short answer question',
-          description: 'short answer description',
-        },
-        {
-          type: 'paragraph',
-          title: 'Paragraph question',
-          description: 'Paragraph answer desc',
-        },
-        {
-          type: 'multiple_choice',
-          title: 'multiple answer question four',
-          description: ' multiple answer desc',
-          options: options,
-        },
-        {
-          type: 'dropdown',
-          title: 'dropdown answer question four',
-          description: ' dropdown answer desc',
-          options: options,
-        },
-        {
-          type: 'checkboxes',
-          title: 'checkbox answer question four',
-          description: ' checkboxes answer desc',
-          options: options,
-        },
-        {
-          type: 'linear_scale',
-          title: 'linear answer question four',
-          description: ' linear answer desc',
-          optionsLinearScale: {
-            startLabel: 'start',
-            endLabel: 'end label',
-            from: 1,
-            to: 4,
-          },
-        },
-        {
-          type: 'date_input',
-          title: 'date answer question four',
-          description: ' date answer desc',
-        },
-        {
-          type: 'time_input',
-          title: 'time answer question four',
-          description: 'time answer desc',
-        },
-        {
-          type: 'multiple_choice_grid',
-          title: 'multiple grid answer question four',
-          description: ' multiple grid answer desc',
-          options: options,
-        },
-        {
-          type: 'email_input',
-          title: 'email answer question four',
-          description: ' email answer desc',
-        },
-        {
-          type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
-        },
-      ],
-      [
-        {
-          type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
-        },
-      ],
-      [
-        {
-          type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
-        },
-      ],
-    ],
   }
   const emptyResponse = {sections: []}
 
@@ -466,7 +461,9 @@ export default function Home() {
       <div className='relative flex w-full max-w-screen-sm justify-end gap-2'>
         <div className='absolute bottom-8 right-0 flex'>
           {form.sections.map((idx) => (
-            <div className='text-4xl text-white first:text-black'> -</div>
+            <div key={idx} className='text-4xl text-white first:text-black'>
+              -
+            </div>
           ))}
         </div>
         <button className='rounded-md border bg-white px-8 py-2'>Back</button>

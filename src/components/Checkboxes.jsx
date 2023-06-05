@@ -55,7 +55,7 @@ const Checkboxes = ({
       />
       <div className='flex flex-col '>
         {options.map((option, idx) => (
-          <div className='mb-4 flex gap-4 '>
+          <div key={idx} className='mb-4 flex gap-4 '>
             <input
               className='h-6 w-6 before:m-[0%] before:block before:h-[10%] before:w-[10%] before:rounded before:p-[50%] before:duration-300 hover:cursor-pointer hover:before:shadow-[0_0_0_8px_rgba(59,130,246,0.2)]'
               onChange={() => handleChange(idx)}

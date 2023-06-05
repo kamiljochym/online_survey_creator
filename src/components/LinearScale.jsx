@@ -56,8 +56,8 @@ const LinearScale = ({
       />
       <div className='m-auto flex w-full flex-row justify-around'>
         <div className='flex items-center'>{optionsLinearScale.startLabel}</div>
-        {scale.map((val) => (
-          <div className='mb-2 flex flex-col gap-4 '>
+        {scale.map((val, idx) => (
+          <div key={idx} className='mb-2 flex flex-col gap-4 '>
             <label className='text-center' htmlFor={val + randomID}>
               {val}
             </label>
