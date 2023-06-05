@@ -43,7 +43,7 @@ export default function Home() {
         {
           type: 'dropdown',
           title: 'Dropdown answer question four',
-          description: 'Dropdown answer desc',
+          description: '',
           options: options,
         },
         {
@@ -55,7 +55,7 @@ export default function Home() {
         {
           type: 'linear_scale',
           title: 'Linear answer question four',
-          description: 'Linear answer desc',
+          description: 'Linear answer description',
           optionsLinearScale: {
             startLabel: 'start',
             from: 1,
@@ -65,28 +65,28 @@ export default function Home() {
         {
           type: 'date_input',
           title: 'Date answer question four',
-          description: 'Date answer desc',
+          description: '',
         },
         {
           type: 'time_input',
           title: 'Time answer question four',
-          description: 'Time answer desc',
+          description: 'With validation',
         },
         {
           type: 'multiple_choice_grid',
-          title: 'multiple grid answer question four',
-          description: ' multiple grid answer desc',
+          title: 'Multiple grid answer question four',
+          description: '',
           options: options,
         },
         {
           type: 'email_input',
-          title: 'email answer question four',
-          description: ' email answer desc',
+          title: 'Email answer question four',
+          description: 'With validation',
         },
         {
           type: 'numeric_input',
-          title: 'numeric answer question four',
-          description: ' numeric answer desc',
+          title: 'Numeric answer question four',
+          description: 'Only allows numeric characters',
         },
       ],
       [],
@@ -242,6 +242,7 @@ export default function Home() {
   }
 
   const addQuestion = (questionId, del) => {
+    console.log(form.sections.length)
     if (del) {
       const newForm = {...form}
       const arr = newForm.sections[0]
@@ -454,7 +455,7 @@ export default function Home() {
       )}
       <div className='relative flex w-full max-w-screen-sm justify-end gap-2'>
         <div className='absolute bottom-8 right-0 flex'>
-          {form.sections.map((idx) => (
+          {form.sections.map((section, idx) => (
             <div key={idx} className='text-4xl text-white first:text-black'>
               -
             </div>

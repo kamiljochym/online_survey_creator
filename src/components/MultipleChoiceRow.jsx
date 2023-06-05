@@ -8,9 +8,7 @@ const MultipleChoiceRow = ({rowTitle, options}) => {
   const randomID = Math.floor(Math.random() * 100000).toString()
   return (
     <div className='table-row items-center'>
-      <div className='table-cell min-w-[58px] max-w-0 p-2'>
-        {rowTitle + 'selected' + selected}
-      </div>
+      <div className='table-cell min-w-[58px] max-w-0 p-2'>{rowTitle}</div>
       {optionsTest.map((option, idx) => (
         <div key={idx} className=' table-cell max-w-0 p-4 text-center'>
           <input

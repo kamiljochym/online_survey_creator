@@ -43,7 +43,7 @@ const ShortAnswer = ({
       />
 
       <div className=''>
-        <div className='duration-800 w-2/4   origin-left border-b-2 transition-all focus-within:border-b-2 focus-within:border-gray-800 '>
+        <div className='duration-800 w-full origin-left  border-b-2 transition-all focus-within:border-b-2 focus-within:border-gray-800 sm:w-2/4 '>
           <input
             disabled={isEdit}
             className='w-full bg-white outline-none'

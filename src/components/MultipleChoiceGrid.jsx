@@ -42,19 +42,15 @@ const MultipleChoiceGrid = ({
           <div className='mb-2 table-row items-center'>
             <div className='table-cell max-w-0 p-2'></div>
             <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 1</div>
-            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 1</div>
-
-            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 8</div>
-
-            <div className='table-cell w-[120px]  min-w-[52px] p-2 text-center'>
-              Col 8
-            </div>
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 2</div>
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 3</div>
+            <div className='table-cell w-[120px] min-w-[52px] p-2 text-center'>Col 4</div>
           </div>
           {/* Row 1 */}
-          <MultipleChoiceRow />
-          <MultipleChoiceRow />
-          <MultipleChoiceRow />
-          <MultipleChoiceRow />
+          <MultipleChoiceRow rowTitle={'Row 1'} />
+          <MultipleChoiceRow rowTitle={'Row 2'} />
+          <MultipleChoiceRow rowTitle={'Row 3'} />
+          <MultipleChoiceRow rowTitle={'Row 4'} />
         </div>
       </div>
       <EditMenu

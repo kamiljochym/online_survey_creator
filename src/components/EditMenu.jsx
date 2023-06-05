@@ -28,7 +28,7 @@ const EditMenu = ({isEdit, handleEdit, addQuestion, questionId}) => {
   return (
     <>
       {isEdit && (
-        <div className='absolute bottom-2 right-4 z-20 flex justify-center gap-6 rounded-md border bg-white px-4 '>
+        <div className='absolute bottom-2 right-2 z-20 flex justify-center gap-6 rounded-md border bg-white px-4 '>
           <div className='text-md text-3xl hover:cursor-pointer' onClick={handleEditMenu}>
             ...
           </div>
