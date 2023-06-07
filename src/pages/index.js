@@ -355,7 +355,7 @@ export default function Home() {
                                 setResponse={setResponse}
                                 title={question.title}
                                 description={question.description}
-                                options={options}
+                                options={question.options}
                                 addQuestion={addQuestion}
                                 updateForm={updateForm}
                                 isEdit={isEdit}
